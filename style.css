@@ -1,0 +1,172 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap");
+
+@font-face {
+  font-family: "font-1";
+  src: url("./assets/NotoSans-Regular.ttf");
+}
+
+/* on retire toutes les marges de base */
+/* * {
+    margin: 0;
+    padding: 0;
+} */
+
+body {
+  font-family: "font-1", serif;
+  background: url("./assets/bg.jpg") no-repeat fixed center/cover;
+  /* height: 100vh; */
+}
+
+h1 {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 2.5rem;
+  color: rgb(182, 182, 252);
+  text-shadow: 9px 3px 4px rgb(0 139 139 / 35%);
+  text-align: center;
+  font-family: "Playfair Display", serif;
+}
+
+h2 {
+  margin: 0;
+}
+
+main {
+  min-height: 500px;
+  width: 90%;
+  background: rgba(245, 243, 243, 0.9);
+  /* centrer une boite */
+  margin: 0 auto;
+  border: 2px solid rgb(33, 101, 209);
+  border-radius: 20px 20px 0 0;
+  box-shadow: 2px 0px 18px 3px #3efdeb;
+  padding: 15px;
+}
+
+/* Positioning  */
+
+.positioning,
+.flexbox,
+.grid {
+  border: 2px solid skyblue;
+  padding: 10px;
+  margin-top: 20px;
+  border-radius: 10px;
+}
+
+.positioning {
+  position: relative;
+}
+
+#circle {
+  height: 60px;
+  width: 60px;
+  background-color: lightblue;
+  padding: 20px;
+  border-radius: 50%;
+  position: absolute;
+  top: -10px;
+  right: 120px;
+  box-shadow: 0 2px 12px 5px #333;
+}
+
+#rectangle {
+  height: 15px;
+  width: 100px;
+  background-color: slateblue;
+  padding: 20px;
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Flexbox  */
+/* par default le navigateur met un padding que l'on ne veut pas  */
+ul {
+  display: flex;
+  justify-content: space-around;
+  padding: 0;
+}
+/* on retire les bullet point des listes  */
+/* on aligne le contenu dans la box en mettant en flex et en affectant les proprietes d'alignement (vertical)*/
+/* et justify pour :horizontal  */
+li {
+  list-style-type: none;
+  font-size: 0.7rem;
+  height: 160px;
+  width: 160px;
+  background-color: turquoise;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Grid  */
+
+.grid-container {
+  display: grid;
+  /* on donne 30% pour l' image et 70% pour le formulaire  */
+  grid-template-columns: 30% 70%;
+  padding: 20px;
+}
+
+form {
+  display: grid;
+  /* on dessine la grid avec deux colonnes egales  */
+  grid-template-columns: 1fr 1fr;
+  /* et trois lignes de taille egales  */
+  grid-template-rows: 1fr 1fr 1fr;
+  /* dessin de la grid avec identifiants affectes plus tard dans la css  */
+  grid-template-areas:
+    "i1 i2"
+    "ta ta"
+    "bt bt";
+}
+/* on affecte ensuite les elements a la grid area  */
+#firstname {
+  grid-area: i1;
+}
+
+#surname {
+  grid-area: i2;
+}
+
+textarea {
+  resize: none;
+  grid-area: ta;
+}
+
+input[type="submit"] {
+  cursor: pointer;
+  background: cyan;
+  transition: 0.2s;
+  grid-area: bt;
+}
+/* pseudo classe pour changement couleur quand curseur hover sur submit  */
+input[type="submit"]:hover {
+    background: darkblue;
+    color: white;
+}
+
+
+/* on donne a tous les elements du form les memes dimensions internes  */
+input, textarea {
+    margin: 5px;
+    height: 45px;
+    border: 1px solid darkblue;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    font-family: "font-1";
+}
+
+/* responsive, on constate avant qu'avec 1000 de largeur, le formulaire sort a droite de l'ecran */
+/* ce code ne s'applique que lorsque on est en dessous des 1000 */
+@media screen and (max-width: 1000px) {
+    /* on fait passer l'image au dessus du formulaire */
+    .grid-container {
+        display: block;
+        padding: 20px;
+      }
+}
